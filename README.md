@@ -54,8 +54,12 @@
 
 ## 安装要求
 
-### 后端应用配置
-在 AppDaemon 的 `apps.yaml` 中添加：
+## 安装方法
+
+### 1. 加载项安装 AppDaemon ，安装方法自行百度。
+
+### AppDaemon 应用配置
+在 AppDaemon 的 `appdaemon.yaml  （路径：addon_configs\a0d7b954_appdaemon\appdaemon.yaml）` 中添加：
 
 ```yaml
 appdaemon:
@@ -69,18 +73,15 @@ appdaemon:
       token: !env_varSUPERVISOR_TOKEN      #单独安装填写长期TOKEN，加载项按照此方法
 ```
 
-## 安装方法
-
-### 1. 后端应用安装 (AppDaemon)
 
 #### 下载 timer_backend.py 文件
-将 `timer_backend.py` 文件复制到 AppDaemon 的 `apps` 目录下，例如：
+将 `timer_backend.py` 文件复制到 AppDaemon 的 `apps ` 目录下，例如：
 ```
-/homeassistant/appdaemon/apps/timer_backend.py
+addon_configs\a0d7b954_appdaemon\apps\timer_backend.py
 ```
 
 #### 配置 apps.yaml
-在 AppDaemon 的 `apps.yaml` 配置文件中添加：
+在 AppDaemon 的 `apps.yaml` 配置文件中添加，注意缩进：
 
 ```yaml
 timer_backend:
@@ -119,14 +120,14 @@ timer_backend:
 
 #### 下载 timer-control-card.js 文件
 将 `timer-control-card.js` 文件复制到 Home Assistant 的 `www` 目录下，例如：
-`config/www/chj/timer-control-card.js`
+`/local/timer-control-card.js`
 
 #### 配置资源引用
-在 Lovelace 仪表板的资源配置中添加：
+仪表板的资源配置中添加：
 
 ```yaml
 resources:
-  - url: /local/chj/timer-control-card.js
+  - url: /localtimer-control-card.js
     type: module
 ```
 
