@@ -32,6 +32,13 @@
 - **实时同步**：与后端 AppDaemon 应用实时同步状态
 
 ### 🎨 界面特色
+## 📸 界面预览
+
+<div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+  <img src="https://github.com/chjspp520/timer-control-card/blob/main/%E4%B8%89%E7%A7%8DUI%E7%95%8C%E9%9D%A2.png" alt="截图" style="width: 100%; height: auto; margin: 5px;">
+  <img src="https://github.com/chjspp520/timer-control-card/blob/main/%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%BF%83.png" alt="截图" style="width: 100%; height: auto; margin: 5px;">
+  <img src="https://github.com/chjspp520/timer-control-card/blob/main/%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB.gif" alt="截图" style="width: 100%; height: auto; margin: 5px;">
+
 - **两种显示模式**：Mini（紧凑）和 Normal（完整）
 - **响应式设计**：完美适配桌面端和移动端
 - **翻页钟控件**：优雅的时间输入界面
