@@ -1,0 +1,13 @@
+{
+  "domain": "timer_backend",
+  "name": "定时精灵",
+  "version": "2.0.0",
+  "documentation": "https://github.com/chjspp520/timer-control-card",
+  "issue_tracker": "https://github.com/chjspp520/timer-control-card/issues",
+  "dependencies": [],
+  "codeowners": ["@your-username"],
+  "requirements": [],
+  "config_flow": true,
+  "iot_class": "local_push",
+  "icon": "mdi:timer-cog-outline"
+}

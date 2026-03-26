@@ -1,0 +1,111 @@
+{
+  "title": "定时精灵",
+  "config": {
+    "step": {
+      "user": {
+        "title": "定时精灵",
+        "description": "设置定时精灵集成",
+        "data": {
+          "persist_file": "timer_tasks.json文件存储位置",
+          "time_zone": "时区",
+          "default_actions": "默认动作配置（高级，可选）"
+        }
+      }
+    },
+    "error": {
+      "unknown": "发生未知错误"
+    },
+    "abort": {
+      "single_instance_allowed": "只允许单个实例"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "定时精灵选项",
+        "description": "配置定时精灵设置",
+        "data": {
+          "persist_file": "timer_tasks.json文件存储位置",
+          "time_zone": "时区",
+          "default_actions": "默认动作配置（高级，可选）"
+        }
+      }
+    }
+  },
+  "services": {
+    "create_timer": {
+      "name": "创建定时器",
+      "description": "为实体创建一次性定时器",
+      "fields": {
+        "entity_id": {
+          "name": "实体",
+          "description": "要控制的实体"
+        },
+        "duration": {
+          "name": "持续时间",
+          "description": "定时器持续时间（HH:MM:SS格式）"
+        },
+        "action_type": {
+          "name": "动作类型",
+          "description": "定时器到期时要执行的动作"
+        }
+      }
+    },
+    "create_climate_timer": {
+      "name": "创建空调定时器",
+      "description": "为空调实体创建定时器",
+      "fields": {
+        "entity_id": {
+          "name": "空调实体",
+          "description": "要控制的空调实体"
+        },
+        "duration": {
+          "name": "持续时间",
+          "description": "定时器持续时间（HH:MM:SS格式）"
+        },
+        "action_type": {
+          "name": "动作类型",
+          "description": "定时器到期时要执行的动作"
+        },
+        "action_data": {
+          "name": "动作数据",
+          "description": "动作的附加数据"
+        }
+      }
+    },
+    "create_schedule": {
+      "name": "创建计划任务",
+      "description": "创建重复执行的计划任务",
+      "fields": {
+        "entity_id": {
+          "name": "实体",
+          "description": "要控制的实体"
+        },
+        "repeat_type": {
+          "name": "重复类型",
+          "description": "重复频率"
+        },
+        "schedule_time": {
+          "name": "计划时间",
+          "description": "执行时间（HH:MM:SS格式）"
+        },
+        "action_type": {
+          "name": "动作类型",
+          "description": "要执行的动作"
+        },
+        "action_data": {
+          "name": "动作数据",
+          "description": "动作的附加数据"
+        },
+        "weekdays": {
+          "name": "工作日",
+          "description": "每周计划的工作日"
+        },
+        "month_days": {
+          "name": "月日",
+          "description": "每月计划的日期"
+        }
+      }
+    }
+  }
+}

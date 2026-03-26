@@ -1,0 +1,111 @@
+{
+  "title": "Timer Backend",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Timer Backend",
+        "description": "Set up the Timer Backend integration",
+        "data": {
+          "persist_file": "Path to timer_tasks.json file",
+          "time_zone": "Time zone",
+          "default_actions": "Default actions configuration (advanced, optional)"
+        }
+      }
+    },
+    "error": {
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "single_instance_allowed": "Only a single instance is allowed"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Timer Backend Options",
+        "description": "Configure Timer Backend settings",
+        "data": {
+          "persist_file": "Path to timer_tasks.json file",
+          "time_zone": "Time zone",
+          "default_actions": "Default actions configuration (advanced, optional)"
+        }
+      }
+    }
+  },
+  "services": {
+    "create_timer": {
+      "name": "Create Timer",
+      "description": "Create a one-time timer for an entity",
+      "fields": {
+        "entity_id": {
+          "name": "Entity",
+          "description": "The entity to control"
+        },
+        "duration": {
+          "name": "Duration",
+          "description": "Timer duration (HH:MM:SS format)"
+        },
+        "action_type": {
+          "name": "Action Type",
+          "description": "Action to perform when timer expires"
+        }
+      }
+    },
+    "create_climate_timer": {
+      "name": "Create Climate Timer",
+      "description": "Create a timer for climate entity",
+      "fields": {
+        "entity_id": {
+          "name": "Climate Entity",
+          "description": "The climate entity to control"
+        },
+        "duration": {
+          "name": "Duration",
+          "description": "Timer duration (HH:MM:SS format)"
+        },
+        "action_type": {
+          "name": "Action Type",
+          "description": "Action to perform when timer expires"
+        },
+        "action_data": {
+          "name": "Action Data",
+          "description": "Additional data for the action"
+        }
+      }
+    },
+    "create_schedule": {
+      "name": "Create Schedule",
+      "description": "Create a recurring schedule",
+      "fields": {
+        "entity_id": {
+          "name": "Entity",
+          "description": "The entity to control"
+        },
+        "repeat_type": {
+          "name": "Repeat Type",
+          "description": "How often to repeat"
+        },
+        "schedule_time": {
+          "name": "Schedule Time",
+          "description": "Time to execute (HH:MM:SS format)"
+        },
+        "action_type": {
+          "name": "Action Type",
+          "description": "Action to perform"
+        },
+        "action_data": {
+          "name": "Action Data",
+          "description": "Additional data for the action"
+        },
+        "weekdays": {
+          "name": "Weekdays",
+          "description": "Days of week for weekly schedule"
+        },
+        "month_days": {
+          "name": "Month Days",
+          "description": "Days of month for monthly schedule"
+        }
+      }
+    }
+  }
+}

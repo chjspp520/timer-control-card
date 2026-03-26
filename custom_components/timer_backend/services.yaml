@@ -1,0 +1,198 @@
+create_timer:
+  name: 创建定时器
+  description: 为实体创建一次性定时器
+  fields:
+    entity_id:
+      name: 实体ID
+      description: 要控制的实体
+      required: true
+      selector:
+        entity:
+    duration:
+      name: 持续时间
+      description: 定时器持续时间（HH:MM:SS格式）
+      default: "00:30:00"
+      selector:
+        text:
+    action_type:
+      name: 动作类型
+      description: 定时器到期时执行的动作
+      default: auto
+      selector:
+        select:
+          options:
+            - auto
+            - turn_off
+            - turn_on
+            - toggle
+
+create_climate_timer:
+  name: 创建空调定时器
+  description: 为空调实体创建定时器
+  fields:
+    entity_id:
+      name: 实体ID
+      description: 要控制的空调实体
+      required: true
+      selector:
+        entity:
+          domain: climate
+    duration:
+      name: 持续时间
+      description: 定时器持续时间（HH:MM:SS格式）
+      default: "01:00:00"
+      selector:
+        text:
+    action_type:
+      name: 动作类型
+      description: 定时器到期时执行的动作
+      default: turn_off
+      selector:
+        select:
+          options:
+            - turn_off
+            - set_temperature
+            - set_mode
+            - restore_previous
+            - auto
+    action_data:
+      name: 动作数据
+      description: 动作的附加数据
+      selector:
+        object:
+
+create_schedule:
+  name: 创建周期任务
+  description: 创建周期性定时任务
+  fields:
+    entity_id:
+      name: 实体ID
+      description: 要控制的实体
+      required: true
+      selector:
+        entity:
+    repeat_type:
+      name: 重复类型
+      description: 重复频率
+      required: true
+      selector:
+        select:
+          options:
+            - daily
+            - weekly
+            - monthly
+    schedule_time:
+      name: 执行时间
+      description: 执行时间（HH:MM:SS格式）
+      required: true
+      selector:
+        time:
+    action_type:
+      name: 动作类型
+      description: 执行的动作
+      default: auto
+      selector:
+        select:
+          options:
+            - auto
+            - turn_off
+            - turn_on
+            - toggle
+    action_data:
+      name: 动作数据
+      description: 动作的附加数据
+      selector:
+        object:
+    weekdays:
+      name: 星期
+      description: 周任务的执行日（monday, tuesday等）
+      selector:
+        select:
+          multiple: true
+          options:
+            - monday
+            - tuesday
+            - wednesday
+            - thursday
+            - friday
+            - saturday
+            - sunday
+    month_days:
+      name: 日期
+      description: 月任务的执行日（1-31）
+      selector:
+        select:
+          multiple: true
+          options:
+            - "1"
+            - "2"
+            - "3"
+            - "4"
+            - "5"
+            - "6"
+            - "7"
+            - "8"
+            - "9"
+            - "10"
+            - "11"
+            - "12"
+            - "13"
+            - "14"
+            - "15"
+            - "16"
+            - "17"
+            - "18"
+            - "19"
+            - "20"
+            - "21"
+            - "22"
+            - "23"
+            - "24"
+            - "25"
+            - "26"
+            - "27"
+            - "28"
+            - "29"
+            - "30"
+            - "31"
+
+cancel_timer:
+  name: 取消定时器
+  description: 取消指定的定时器
+  fields:
+    timer_id:
+      name: 定时器ID
+      description: 要取消的定时器ID
+      required: true
+      selector:
+        text:
+
+cancel_schedule:
+  name: 取消周期任务
+  description: 取消周期性定时任务
+  fields:
+    schedule_id:
+      name: 任务ID
+      description: 要取消的周期任务ID
+      required: true
+      selector:
+        text:
+
+cancel_entity_timer:
+  name: 取消实体定时器
+  description: 取消指定实体的所有定时器
+  fields:
+    entity_id:
+      name: 实体ID
+      description: 要取消定时器的实体
+      required: true
+      selector:
+        entity:
+
+get_timers:
+  name: 获取定时器列表
+  description: 获取所有活跃的定时器
+
+get_schedules:
+  name: 获取周期任务列表
+  description: 获取所有活跃的周期任务
