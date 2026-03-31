@@ -3,12 +3,16 @@ from __future__ import annotations
 
 import logging
 from datetime import timedelta
+import time
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import ConfigType
 from homeassistant.helpers.event import async_track_time_interval
+from homeassistant.components.frontend import add_extra_js_url
+from homeassistant.components.http import StaticPathConfig
+from homeassistant.components.lovelace.resources import ResourceStorageCollection
 
 # 显式导入配置流以确保注册
 from . import config_flow  # noqa: F401
@@ -31,8 +35,56 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """设置定时精灵集成."""
     _LOGGER.debug("设置定时精灵集成")
     hass.data.setdefault(DOMAIN, {})
+    await async_setup_card(hass)
     return True
 
+async def async_setup_card(hass: HomeAssistant):
+    card_url = f"/{DOMAIN}/timer-control-card.js"
+    await hass.http.async_register_static_paths([
+        StaticPathConfig(card_url, hass.config.path(f"custom_components/{DOMAIN}/card/timer-control-card.js"), False)
+    ])
+    resource_url = f"{card_url}?v={time.time()}"
+    #add_extra_js_url(hass, resource_url)
+    resources = hass.data["lovelace"].resources
+    if resources:
+        if not resources.loaded:
+            await resources.async_load()
+            resources.loaded = True
+
+        frontend_added = False
+        for r in resources.async_items():
+            if r["url"].startswith(card_url):
+                frontend_added = True
+                if not r["url"] == resource_url:
+                    if isinstance(resources, ResourceStorageCollection):
+                        await resources.async_update_item(
+                            r["id"], 
+                            {
+                                "res_type": "module", 
+                                "url": resource_url
+                            }
+                        )
+                    else:
+                        r["url"] = resource_url
+                continue
+
+        if not frontend_added:
+            if getattr(resources, "async_create_item", None):
+                await resources.async_create_item(
+                    {
+                        "res_type": "module",
+                        "url": resource_url
+                    }
+                )
+            elif getattr(resources, "data", None) and getattr(
+                resources.data, "append", None
+            ):
+                resources.data.append(
+                    {
+                        "type": "module",
+                        "url": resource_url
+                    }
+                )
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """从配置条目设置定时精灵."""
